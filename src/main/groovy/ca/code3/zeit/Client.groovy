@@ -1,10 +1,10 @@
 package ca.code3.zeit
 
 class Client {
-    private nom
+    private name
 
-    Client (nom) {
-        this.nom = nom
+    Client (name) {
+        this.name = name
     }
 }
 

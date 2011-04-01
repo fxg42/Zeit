@@ -4,10 +4,10 @@ import ca.code3.zeit.*
 
 class ZeitService {
     
-    List<Activite> findByActiviteUserIdAndDateRange (String userId, Date from, Date to) {
+    List<Entry> findEntriesByUserEmailAndDatesBetween (String userId, Date from, Date to) {
         []
     }
     
-    void saveOrUpdate (Collection activites) {
+    void saveOrUpdate (Collection entries) {
     }
 }
