@@ -1,10 +1,7 @@
 package ca.code3.zeit
 
 class Client {
-    private name
-
-    Client (name) {
-        this.name = name
-    }
+    int id, rev /* for Hibernate */
+    String name
 }
 

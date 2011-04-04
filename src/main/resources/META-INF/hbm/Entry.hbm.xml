@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ca.code3.zeit">
+
+  <class name="Entry">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <version name="rev"/>
+    <many-to-one name="user"/>
+    <many-to-one name="project"/>
+    <property name="comment"/>
+    <property name="startDatetime"/>
+    <property name="duration" type="ca.code3.zeit.dao.hibernate.TimeDurationUserType">
+      <column name="duration_days"/>
+      <column name="duration_hours"/>
+      <column name="duration_minutes"/>
+      <column name="duration_seconds"/>
+      <column name="duration_millis"/>
+    </property>
+  </class>
+
+</hibernate-mapping>

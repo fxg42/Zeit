@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ca.code3.zeit">
+
+  <class name="Project">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <version name="rev"/>
+    <many-to-one name="client"/>
+    <property name="mnemonic"/>
+  </class>
+
+</hibernate-mapping>
