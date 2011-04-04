@@ -6,26 +6,17 @@ import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
 
 class EntryTest {
-    def client, projet, user
+    def client, project, user
 
     @Before void set_up () {
-        client = new Client(name:"nom du client")
-        projet = new Project(client:client, mnemonic:"TEST")
+        client = new Client(name:"client name")
+        project = new Project(client:client, mnemonic:"TEST")
         user = new User(email:"test@test.test", name:"test")
     }
 
     @Test void it_should_hold_all_information () {
         use (TimeCategory) {
-            new Entry(user, projet, "contenu du commentaire", new Date(), 1.hour)
-            new Entry(user, projet, new Date(), 30.minutes)
+            new Entry(user:user, project:project, comment:"comment...", from:new Date(), till:30.minutes.from.now)
         }
     }
-
-    @Test(expected = IllegalArgumentException) void comments_shouldnt_be_longer_than_140_chars () {
-        use (TimeCategory) {
-            def longComment = "a"*141
-            new Entry(user, projet, longComment, new Date(), 2.hours)
-        }
-    }
-
 }

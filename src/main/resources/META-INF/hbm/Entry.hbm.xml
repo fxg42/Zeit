@@ -11,14 +11,8 @@
     <many-to-one name="user"/>
     <many-to-one name="project"/>
     <property name="comment"/>
-    <property name="startDatetime"/>
-    <property name="duration" type="ca.code3.zeit.dao.hibernate.TimeDurationUserType">
-      <column name="duration_days"/>
-      <column name="duration_hours"/>
-      <column name="duration_minutes"/>
-      <column name="duration_seconds"/>
-      <column name="duration_millis"/>
-    </property>
+    <property name="from"/>
+    <property name="till"/>
   </class>
 
 </hibernate-mapping>

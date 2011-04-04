@@ -15,7 +15,7 @@ class EntryDaoTest {
     @Test void it_should_find_all_activites_by_user_and_date_range () {
         def fromDate = Date.parse("yyyy-MM-dd", "2011-03-20")
         def toDate = Date.parse("yyyy-MM-dd", "2011-03-26")
-        dao.findEntriesByUserEmailAndDatesBetween("fxg@code3.ca", fromDate, toDate)
+        dao.findEntriesByUserEmailAndDatesBetween("test@test.test", fromDate, toDate)
     }
     
     @Test void it_should_save_new_activites () {
