@@ -8,11 +8,15 @@
       <generator class="native"/>
     </id>
     <version name="rev"/>
-    <many-to-one name="user"/>
-    <many-to-one name="project"/>
+    <many-to-one name="user" cascade="save-update"/>
+    <many-to-one name="project" cascade="save-update"/>
     <property name="comment"/>
-    <property name="from"/>
-    <property name="till"/>
+    <property name="from">
+      <column name="from_date"/>
+    </property>
+    <property name="till">
+      <column name="till_date"/>
+    </property>
   </class>
 
 </hibernate-mapping>

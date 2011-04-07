@@ -40,7 +40,7 @@
       <value>
         hibernate.dialect=org.hibernate.dialect.HSQLDialect
         hibernate.query.substitutions=true 1, false 0, yes 'Y', no 'N'
-        hibernate.hbm2ddl.auto=update
+        hibernate.hbm2ddl.auto=create
       </value>
     </property>
   </bean>

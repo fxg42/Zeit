@@ -8,7 +8,7 @@
       <generator class="native"/>
     </id>
     <version name="rev"/>
-    <many-to-one name="client"/>
+    <many-to-one name="client" cascade="save-update"/>
     <property name="mnemonic"/>
   </class>
 

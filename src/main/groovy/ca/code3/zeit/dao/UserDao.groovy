@@ -11,17 +11,17 @@ class UserDao {
     @Autowired SessionFactory sessionFactory
 
     @Transactional(readOnly=true)
-    User findByEmail (String email) {
+    User findByEmail (String testEmail) {
         sessionFactory.currentSession
             .createQuery("from User where email = :email")
-            .setString("email", email)
+            .setString("email", testEmail)
             .uniqueResult()
     }
 
     @Transactional
-    User save (User user) {
-        sessionFactory.currentSession.saveOrUpdate(user)
-        user
+    User save (User aUser) {
+        sessionFactory.currentSession.saveOrUpdate(aUser)
+        aUser
     }
 }
 
