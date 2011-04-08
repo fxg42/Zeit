@@ -8,8 +8,8 @@
       <generator class="native"/>
     </id>
     <version name="rev"/>
-    <many-to-one name="user" cascade="save-update"/>
-    <many-to-one name="project" cascade="save-update"/>
+    <many-to-one name="user" column="user_id" cascade="save-update"/>
+    <many-to-one name="project" column="project_id" cascade="save-update"/>
     <property name="comment"/>
     <property name="from">
       <column name="from_date"/>

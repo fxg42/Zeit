@@ -20,10 +20,10 @@
   <util:properties id="hibernateProperties" location="META-INF/hibernateProperties-test.properties"/>
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    <property name="driverClassName"><value>org.hsqldb.jdbc.JDBCDriver</value></property>
-    <property name="url"><value>jdbc:hsqldb:mem:testdatabase</value></property>
-    <property name="username"><value>SA</value></property>
-    <property name="password" value=""/>
+    <property name="driverClassName" value="org.postgresql.Driver"/>
+    <property name="url" value="jdbc:postgresql:zeit_test"/>
+    <property name="username" value="postgres"/>
+    <property name="password" value="postgres"/>
   </bean>
 
 </beans>

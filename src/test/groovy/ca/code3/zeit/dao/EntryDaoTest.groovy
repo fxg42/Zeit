@@ -1,6 +1,7 @@
 package ca.code3.zeit.dao
 
 import ca.code3.zeit.*
+import groovy.time.*
 import org.springframework.context.support.*
 
 import org.junit.*
@@ -26,8 +27,9 @@ class EntryDaoTest {
     }
 
     @Test void it_should_find_all_activites_by_user_and_date_range () {
-        // def fromDate = Date.parse("yyyy-MM-dd", "2011-03-20")
-        // def toDate = Date.parse("yyyy-MM-dd", "2011-03-26")
-        // dao.findEntriesByUserEmailAndDatesBetween("test@test.test", fromDate, toDate)
+        def saved = dao.save(entry)
+        use (TimeCategory) {
+            dao.findEntriesByUserEmailAndDatesBetween("test@test.test", 1.day.ago, 1.day.from.now)
+        }
     }
 }

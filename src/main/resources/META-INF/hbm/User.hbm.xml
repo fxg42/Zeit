@@ -3,7 +3,7 @@
 
 <hibernate-mapping package="ca.code3.zeit">
 
-  <class name="User">
+  <class name="User" table="users">
     <id name="id">
       <generator class="native"/>
     </id>
