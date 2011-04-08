@@ -12,7 +12,7 @@ class EntryDaoTest {
 
     @Before void set_up () {
         def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext-test.xml')
-        dao = ctx.getBean('entryDao')
+        dao = ctx.getBean('domainDao')
         client = new Client(name:"client name")
         project = new Project(client:client, mnemonic:"TEST")
         user = new User(email:"test@test.test", name:"test")

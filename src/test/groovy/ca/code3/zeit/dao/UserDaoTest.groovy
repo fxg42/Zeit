@@ -8,7 +8,7 @@ import static org.junit.Assert.*
 
 class UserDaoTest {
     def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext-test.xml')
-    def dao = ctx.getBean('userDao')
+    def dao = ctx.getBean('domainDao')
     def testUser = new User(email:'test@test.test', name:'test')
 
     @Before void set_up () {
@@ -17,7 +17,7 @@ class UserDaoTest {
     @Test void it_should_save_users () {
         dao.save(testUser)
         
-        def foundUser = dao.findByEmail(testUser.email)
+        def foundUser = dao.findUserByEmail(testUser.email)
         assertNotNull foundUser
         assertEquals testUser.email, foundUser.email
     }
