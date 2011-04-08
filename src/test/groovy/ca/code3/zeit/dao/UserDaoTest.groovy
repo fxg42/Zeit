@@ -7,7 +7,7 @@ import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
 
 class UserDaoTest {
-    def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext-test.xml')
+    def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext-test.xml', 'META-INF/applicationContext.xml')
     def dao = ctx.getBean('domainDao')
     def testUser = new User(email:'test@test.test', name:'test')
 
