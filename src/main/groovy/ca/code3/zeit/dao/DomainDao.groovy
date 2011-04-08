@@ -7,11 +7,11 @@ import org.springframework.stereotype.*
 import org.springframework.transaction.annotation.*
 
 @Repository
-class UserDao {
+class DomainDao {
     @Autowired SessionFactory sessionFactory
 
     @Transactional(readOnly=true)
-    User findByEmail (String testEmail) {
+    User findUserByEmail (String testEmail) {
         sessionFactory.currentSession
             .createQuery("from User where email = :email")
             .setString("email", testEmail)
@@ -19,9 +19,9 @@ class UserDao {
     }
 
     @Transactional
-    User save (User aUser) {
-        sessionFactory.currentSession.saveOrUpdate(aUser)
-        aUser
+    def save (aDomainObject) {
+        sessionFactory.currentSession.saveOrUpdate(aDomainObject)
+        aDomainObject
     }
 }
 
