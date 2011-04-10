@@ -1,7 +1,6 @@
 package ca.code3.zeit.dao
 
 import ca.code3.zeit.*
-import ca.code3.zeit.ext.*
 import org.hibernate.*
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
