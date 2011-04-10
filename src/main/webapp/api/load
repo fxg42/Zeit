@@ -6,7 +6,7 @@ session = session ?: request.getSession(true)
 ctx = WebApplicationContextUtils.getWebApplicationContext(session.servletContext)
 dao = ctx.getBean('domainDao')
 
-println "It works!"
+println "<h1>It works!<h1>"
 
 
 // vim: ft=groovy
