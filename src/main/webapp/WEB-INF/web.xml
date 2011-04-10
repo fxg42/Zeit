@@ -1,3 +1,20 @@
 <?xml version="1.0"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0"> 
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <!-- uses classpath $TOMCAT_HOME/lib/META-INF/zeit/ -->
+    <param-value>classpath:/META-INF/zeit/applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <servlet-name>GroovyServlet</servlet-name>
+    <servlet-class>groovy.servlet.GroovyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GroovyServlet</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
 </web-app>

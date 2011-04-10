@@ -31,13 +31,28 @@
     <property name="namingStrategy">
       <bean class="org.hibernate.cfg.ImprovedNamingStrategy"/>
     </property>
-    <property name="mappingDirectoryLocations">
+    <property name="mappingLocations">
       <list>
-        <value>META-INF/hbm/</value>
+        <value>classpath:META-INF/hbm/Client.hbm.xml</value>
+        <value>classpath:META-INF/hbm/Entry.hbm.xml</value>
+        <value>classpath:META-INF/hbm/Project.hbm.xml</value>
+        <value>classpath:META-INF/hbm/User.hbm.xml</value>
       </list>
     </property>
-    <property name="hibernateProperties" ref="hibernateProperties"/>
+    <property name="hibernateProperties">
+      <value>
+      hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+      hibernate.query.substitutions=true 1, false 0, yes 'Y', no 'N'
+      hibernate.hbm2ddl.auto=create
+      </value>
+    </property>
+  </bean>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="org.postgresql.Driver"/>
+    <property name="url" value="jdbc:postgresql:zeit_test"/>
+    <property name="username" value="postgres"/>
+    <property name="password" value="postgres"/>
   </bean>
 
 </beans>
-
