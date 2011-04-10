@@ -16,7 +16,7 @@ class EntryTest {
 
     @Test void it_should_hold_all_information () {
         use (TimeCategory) {
-            new Entry(user:user, project:project, comment:"comment...", from:new Date(), till:30.minutes.from.now)
+            new Entry(user:user, project:project, comment:"comment...", recordedOn:new Date(), duration:30)
         }
     }
 }

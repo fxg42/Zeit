@@ -17,7 +17,7 @@ class EntryDaoTest {
         client = new Client(name:"client name")
         project = new Project(client:client, mnemonic:"TEST")
         user = new User(email:"test@test.test", name:"test")
-        entry = new Entry(user:user, project:project, comment:"comment...", from:new Date(), till:new Date())
+        entry = new Entry(user:user, project:project, comment:"comment...", recordedOn:new Date(), duration:30)
     }
     
     @Test void it_should_save_new_entries () {
@@ -27,9 +27,20 @@ class EntryDaoTest {
     }
 
     @Test void it_should_find_all_activites_by_user_and_date_range () {
-        def saved = dao.save(entry)
         use (TimeCategory) {
-            dao.findEntriesByUserEmailAndDatesBetween("test@test.test", 1.day.ago, 1.day.from.now)
+            def lastSaved = dao.save(entry)
+            def results = dao.findEntriesByUserEmailAndDatesBetween(entry.user.email, 1.day.ago, 1.day.from.now)
+            assertEquals 1, results.size()
+            assertEquals lastSaved.id, results.first().id
+
+            results = dao.findEntriesByUserEmailAndDatesBetween(entry.user.email, new Date(), 1.day.from.now)
+            assertEquals 1, results.size()
+
+            results = dao.findEntriesByUserEmailAndDatesBetween(entry.user.email, 1.day.ago, new Date())
+            assertEquals 1, results.size()
+
+            results = dao.findEntriesByUserEmailAndDatesBetween(entry.user.email, new Date(), new Date())
+            assertEquals 1, results.size()
         }
     }
 }

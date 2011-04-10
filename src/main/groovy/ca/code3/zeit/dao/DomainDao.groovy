@@ -1,6 +1,7 @@
 package ca.code3.zeit.dao
 
 import ca.code3.zeit.*
+import ca.code3.zeit.ext.*
 import org.hibernate.*
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -19,12 +20,12 @@ class DomainDao {
     }
 
     @Transactional(readOnly=true)
-    Collection<Entry> findEntriesByUserEmailAndDatesBetween (String testEmail, Date lowerBound, Date upperBound) {
+    Collection<Entry> findEntriesByUserEmailAndDatesBetween (String testEmail, Date fromDate, Date toDate) {
         sessionFactory.currentSession
-            .createQuery("from Entry e where e.user.email = :testEmail and :lowerBound <= e.from and e.till <= :upperBound")
+            .createQuery("from Entry e where e.user.email = :testEmail and :lowerBound <= e.recordedOn and e.recordedOn <= :upperBound")
             .setString("testEmail", testEmail)
-            .setDate("lowerBound", lowerBound)
-            .setDate("upperBound", upperBound)
+            .setDate("lowerBound", toCalendarDate(fromDate))
+            .setDate("upperBound", toCalendarDate(toDate))
             .list()
     }
 
@@ -32,6 +33,12 @@ class DomainDao {
     def save (aDomainObject) {
         sessionFactory.currentSession.saveOrUpdate(aDomainObject)
         aDomainObject
+    }
+
+    private toCalendarDate (Date date) {
+        def retval = new Date(date.time)
+        retval.clearTime()
+        retval
     }
 }
 

@@ -11,12 +11,8 @@
     <many-to-one name="user" column="user_id" cascade="save-update"/>
     <many-to-one name="project" column="project_id" cascade="save-update"/>
     <property name="comment"/>
-    <property name="from">
-      <column name="from_date"/>
-    </property>
-    <property name="till">
-      <column name="till_date"/>
-    </property>
+    <property name="recordedOn"/>
+    <property name="duration"/>
   </class>
 
 </hibernate-mapping>
