@@ -9,6 +9,10 @@ class Entry {
     Date recordedOn
     int duration
 
+    /* return a copy */
+    Date getRecordedOn () {
+        new Date(recordedOn.time)
+    }
     /* always copy then remove time component */
     void setRecordedOn (Date recordedOn) {
         this.recordedOn = new Date(recordedOn.time)
