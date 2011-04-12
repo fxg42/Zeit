@@ -7,7 +7,7 @@ class Entry {
     String comment
     Date recordedOn
     int duration
-    Set tags
+    Set tags = []
 
     /* return a copy */
     Date getRecordedOn () {

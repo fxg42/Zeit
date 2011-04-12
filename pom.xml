@@ -12,6 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <org.codehaus.groovy.version>1.7.10</org.codehaus.groovy.version>
     <org.hibernate.version>3.6.2.Final</org.hibernate.version>
+    <org.hibernate.hibernate-validator.version>4.1.0.Final</org.hibernate.hibernate-validator.version>
     <org.slf4j.version>1.6.1</org.slf4j.version>
     <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
   </properties>
@@ -57,6 +58,11 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
       <version>${org.hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${org.hibernate.hibernate-validator.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>

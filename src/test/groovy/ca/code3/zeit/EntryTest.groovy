@@ -6,7 +6,7 @@ import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
 
 class EntryTest {
-    def client, project, user
+    def user
 
     @Before void set_up () {
         user = new User(email:"test@test.test", name:"test")
