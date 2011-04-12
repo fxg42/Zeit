@@ -20,9 +20,18 @@ class DomainDao {
 
     @Transactional(readOnly=true)
     Collection<Entry> findEntriesByUserEmailAndDatesBetween (String testEmail, Date fromDate, Date toDate) {
+        findEntriesByDatesBetween(fromDate, toDate).findAll{it.user.email == testEmail}
+    }
+
+    @Transactional(readOnly=true)
+    Collection<Entry> findEntriesByTagsAndDatesBetween (List testTags, Date fromDate, Date toDate) {
+        testTags ? findEntriesByDatesBetween(fromDate, toDate).findAll{it.tags.containsAll(testTags)} : []
+    }
+
+    @Transactional(readOnly=true)
+    Collection<Entry> findEntriesByDatesBetween (Date fromDate, Date toDate) {
         sessionFactory.currentSession
-            .createQuery("from Entry e where e.user.email = :testEmail and :lowerBound <= e.recordedOn and e.recordedOn <= :upperBound")
-            .setString("testEmail", testEmail)
+            .createQuery("from Entry e where e.recordedOn between :lowerBound and :upperBound")
             .setDate("lowerBound", toCalendarDate(fromDate))
             .setDate("upperBound", toCalendarDate(toDate))
             .list()
