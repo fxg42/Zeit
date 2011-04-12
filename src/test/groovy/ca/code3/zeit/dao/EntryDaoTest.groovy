@@ -9,14 +9,17 @@ import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
 
 class EntryDaoTest {
-    def dao, client, project, user, entry1, entry2
+    def dao, user1, user2, entry1, entry2, entry3
 
     @Before void set_up () {
         def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext.xml')
         dao = ctx.getBean('domainDao')
-        user = new User(email:"test@test.test", name:"test")
-        entry1 = new Entry(user:user, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["tag-a", "tag-b", "tag-c"])
-        entry2 = new Entry(user:user, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["tag-a", "tag-b"])
+        user1 = new User(email:"test@test.test", name:"test")
+        user2 = new User(email: "other@other.email", name: "other")
+        entry1 = new Entry(user:user1, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["tag-a", "tag-b", "tag-c"])
+        entry2 = new Entry(user:user1, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["tag-a", "tag-b"])
+        entry3 = new Entry(user:user2, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["other"])
+        dao.save(entry3)
     }
     
     @Test void it_should_save_new_entries () {
@@ -40,6 +43,19 @@ class EntryDaoTest {
 
             results = dao.findEntriesByUserEmailAndDatesBetween(entry1.user.email, new Date(), new Date())
             assertEquals 1, results.size()
+        }
+    }
+
+    @Test void it_should_return_empty_if_unknown_email_is_given () {
+        def results = dao.findEntriesByUserEmailAndDatesBetween("unkown.email", new Date(), new Date())
+        assertEquals 0, results.size()
+    }
+
+    @Test void it_should_return_empty_when_out_of_range () {
+        def lastSaved = dao.save(entry1)
+        use (TimeCategory) {
+            def results = dao.findEntriesByUserEmailAndDatesBetween(entry1.user.email, 2.days.ago, 1.day.ago)
+            assertEquals 0, results.size()
         }
     }
 
