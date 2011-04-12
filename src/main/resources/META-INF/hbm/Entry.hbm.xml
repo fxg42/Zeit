@@ -9,10 +9,13 @@
     </id>
     <version name="rev"/>
     <many-to-one name="user" column="user_id" cascade="save-update"/>
-    <many-to-one name="project" column="project_id" cascade="save-update"/>
     <property name="comment"/>
     <property name="recordedOn"/>
     <property name="duration"/>
+    <set name="tags" table="entry_tags">
+      <key column="entry_id"/>
+      <element type="string" column="tag"/>
+    </set>
   </class>
 
 </hibernate-mapping>

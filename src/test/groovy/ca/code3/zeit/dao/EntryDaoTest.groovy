@@ -14,10 +14,8 @@ class EntryDaoTest {
     @Before void set_up () {
         def ctx = new ClassPathXmlApplicationContext('META-INF/applicationContext.xml')
         dao = ctx.getBean('domainDao')
-        client = new Client(name:"client name")
-        project = new Project(client:client, mnemonic:"TEST")
         user = new User(email:"test@test.test", name:"test")
-        entry = new Entry(user:user, project:project, comment:"comment...", recordedOn:new Date(), duration:30)
+        entry = new Entry(user:user, comment:"comment...", recordedOn:new Date(), duration:30, tags: ["tag-a", "tag-b", "tab-c"])
     }
     
     @Test void it_should_save_new_entries () {

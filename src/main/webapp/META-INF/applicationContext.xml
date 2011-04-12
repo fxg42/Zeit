@@ -31,6 +31,7 @@
     <property name="namingStrategy">
       <bean class="org.hibernate.cfg.ImprovedNamingStrategy"/>
     </property>
+    <!-- Described individually instead of a "by directory" basis -->
     <property name="mappingLocations">
       <list>
         <value>classpath:META-INF/hbm/Entry.hbm.xml</value>
@@ -46,11 +47,10 @@
     </property>
   </bean>
 
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    <property name="driverClassName" value="org.postgresql.Driver"/>
-    <property name="url" value="jdbc:postgresql:zeit_test"/>
-    <property name="username" value="postgres"/>
-    <property name="password" value="postgres"/>
-  </bean>
+  <!-- uses DataSource resource defined in $TOMCAT_HOME/conf/server.xml -->
+  <jee:jndi-lookup id="dataSource" jndi-name="jdbc/zeit" resource-ref="true"/>
 
 </beans>
+
+
+

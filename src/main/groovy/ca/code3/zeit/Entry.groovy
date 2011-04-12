@@ -4,10 +4,10 @@ class Entry {
     int id, rev /* for Hibernate */
 
     User user
-    Project project
     String comment
     Date recordedOn
     int duration
+    Set tags
 
     /* return a copy */
     Date getRecordedOn () {
