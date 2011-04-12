@@ -32,21 +32,19 @@ class EntryTest {
     }
 
     @Test void it_should_validate_comment_length () {
-        testEntry.comment = null
-        def violations = validator.validate(testEntry)
-        assertEquals 1, violations.size()
+        def violations
 
-        testEntry.comment = ""
-        violations = validator.validate(testEntry)
-        assertEquals 0, violations.size()
+        ["a"*140, ""].each { validValue ->
+            testEntry.comment = validValue
+            violations = validator.validate(testEntry)
+            assertEquals 0, violations.size()
+        }
 
-        testEntry.comment = "a"*140
-        violations = validator.validate(testEntry)
-        assertEquals 0, violations.size()
-
-        testEntry.comment = "a"*141
-        violations = validator.validate(testEntry)
-        assertEquals 1, violations.size()
+        ["a"*141, null].each { invalidValue ->
+            testEntry.comment = invalidValue
+            violations = validator.validate(testEntry)
+            assertEquals 1, violations.size()
+        }
     }
 
     @Test void dates_should_not_be_in_the_future () {
