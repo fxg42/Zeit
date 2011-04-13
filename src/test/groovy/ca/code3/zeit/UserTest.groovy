@@ -10,7 +10,7 @@ class UserTest {
 
     static validator
 
-    @BeforeClass static void setUp() {
+    @BeforeClass static void set_up_once () {
         def factory = Validation.buildDefaultValidatorFactory()
         validator = factory.getValidator()
     }

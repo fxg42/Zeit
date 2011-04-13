@@ -13,9 +13,6 @@ class LoadTest {
         if (base_url.endsWith('/')) base_url = base_url[0..-2]
     }
 
-    @Before void set_up () {
-    }
-
     @Test void it_should_call_the_script () {
         http.get("${base_url}/api/load", [
             success: { response ->
