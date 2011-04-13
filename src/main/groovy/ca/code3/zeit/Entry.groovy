@@ -21,7 +21,6 @@ class Entry {
     /* always copy then remove time component */
     void setRecordedOn (Date recordedOn) {
         if (! recordedOn) throw new IllegalArgumentException("recordedOn may not be null")
-
         this.recordedOn = new Date(recordedOn.time)
         this.recordedOn.clearTime()
     }

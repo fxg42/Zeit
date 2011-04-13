@@ -68,6 +68,16 @@ class EntryTest {
         testEntry.recordedOn = null
     }
 
+    @Test void it_should_copy_recordedOn_and_erase_time () {
+        def setDate = new Date()
+        testEntry.recordedOn = setDate
+        def getDate = testEntry.recordedOn
+        
+        assertTrue setDate != getDate
+        assertTrue setDate.format('HH:mm:ss') != '00:00:00'
+        assertTrue getDate.format('HH:mm:ss') == '00:00:00'
+    }
+
     @Test void duration_should_not_be_less_than_1 () {
         testEntry.duration = 1
         def violations = validator.validate(testEntry)
