@@ -10,7 +10,7 @@ class Entry {
 
     @NotNull @Valid User user
     @NotNull @Length(max=140) String comment
-    @NotNull @Past Date recordedOn
+    @NotNull Date recordedOn
     @Min(1L) int duration
     @NotNull Set<String> tags = []
 

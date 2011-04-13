@@ -47,22 +47,6 @@ class EntryTest {
         }
     }
 
-    @Test void dates_should_not_be_in_the_future () {
-        testEntry.recordedOn = new Date()
-        def violations = validator.validate(testEntry)
-        assertEquals 0, violations.size()
-        
-        use (TimeCategory) {
-            testEntry.recordedOn = 1.day.ago
-            violations = validator.validate(testEntry)
-            assertEquals 0, violations.size()
-
-            testEntry.recordedOn = 1.day.from.now
-            violations = validator.validate(testEntry)
-            assertEquals 1, violations.size()
-        }
-    }
-    
     @Test(expected=IllegalArgumentException)
     void it_should_not_allow_null_dates () {
         testEntry.recordedOn = null
