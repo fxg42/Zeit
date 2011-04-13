@@ -19,7 +19,7 @@ class LoadTest {
                 assertTrue true
             },
             error: { response ->
-                assertTrue false
+                fail()
             }
         ])    
     }

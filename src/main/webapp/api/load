@@ -1,12 +1,43 @@
+import groovy.time.*
 import java.util.logging.*
 import org.springframework.web.context.support.*
+import static net.sf.json.JSONSerializer.toJSON
 
 logger = Logger.getLogger('ca.code3.zeit.api.load')
 session = session ?: request.getSession(true)
-ctx = WebApplicationContextUtils.getWebApplicationContext(session.servletContext)
-dao = ctx.getBean('domainDao')
+remoteUser = request.remoteUser ?: ""
 
-println "<h1>It works!<h1>"
+try {
+    ctx = WebApplicationContextUtils.getWebApplicationContext(session.servletContext)
+    dao = ctx.getBean('domainDao')
 
+    use (TimeCategory) {
+        lowerBound = parseDate(params.fromDate, 1.week.ago)
+        upperBound = parseDate(params.toDate, 1.week.from.now)
+        entries = dao.findEntriesByUserEmailAndDatesBetween(remoteUser, lowerBound, upperBound)
+    }
+
+    data = entries.collect { entry -> [
+        comment: entry.comment,
+        recorded_on: entry.recordedOn.format("yyyy-mm-dd"),
+        duration: entry.duration,
+        tags: entry.tags.toString()
+    ]}
+
+    println toJSON(data).toString()
+}
+catch (Exception ex) {
+    logger.logp(Level.SEVERE, "ca.code3.zeit.api.load", "main", "Unexpected error.", ex)
+    response.sendError(500, ex.message)
+}
+
+Date parseDate (String dateStr, Date defaultDate) {
+    if (! dateStr) return defaultDate
+    try {
+        Date.parse("yyyy-MM-dd", dateStr)
+    } catch (Exception ex) {
+        defaultDate
+    }
+}
 
 // vim: ft=groovy
