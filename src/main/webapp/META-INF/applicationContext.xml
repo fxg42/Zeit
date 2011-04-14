@@ -48,7 +48,7 @@
     </property>
   </bean>
 
-  <bean id="ZeitHibernateStatistics" class="org.hibernate.jmx.StatisticsService">
+  <bean name="ca.code3.zeit.hibernate.statistics" class="org.hibernate.jmx.StatisticsService">
     <property name="statisticsEnabled" value="true"/>
     <property name="sessionFactory" ref="sessionFactory"/>
   </bean>
