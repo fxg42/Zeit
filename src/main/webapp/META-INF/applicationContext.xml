@@ -19,8 +19,8 @@
 
   <context:component-scan base-package="ca.code3.zeit"/>
   <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+  <context:mbean-export/>
   <!-- <task:annotation-driven/> -->
-  <!-- <context:mbean-export/> -->
 
   <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
     <property name="sessionFactory" ref="sessionFactory"/>
@@ -43,8 +43,14 @@
       hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
       hibernate.query.substitutions=true 1, false 0, yes 'Y', no 'N'
       hibernate.hbm2ddl.auto=create
+      hibernate.generate_statistics=true
       </value>
     </property>
+  </bean>
+
+  <bean id="hibernateStatisticsMBean" class="org.hibernate.jmx.StatisticsService">
+    <property name="statisticsEnabled" value="true"/>
+    <property name="sessionFactory" ref="sessionFactory"/>
   </bean>
 
   <!-- uses DataSource resource defined in $TOMCAT_HOME/conf/server.xml -->

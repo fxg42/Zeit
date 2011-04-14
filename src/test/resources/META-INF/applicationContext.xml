@@ -42,6 +42,7 @@
       hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
       hibernate.query.substitutions=true 1, false 0, yes 'Y', no 'N'
       hibernate.hbm2ddl.auto=create
+      hibernate.show_sql=true
       </value>
     </property>
   </bean>
